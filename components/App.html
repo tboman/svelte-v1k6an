@@ -1,6 +1,8 @@
-<h1>Hello, <span class="logo-font">{name}</span>.</h1>
+
+<h1><span class="logo-font">{name}</span>.</h1>
 
 <Counter />
+<div id="chart4" class="ct-chart"></div>
 
 <!-- Import the counter component! -->
 <script>
@@ -12,7 +14,6 @@
     }
   };
 </script>
-
 <!-- Include styles -->
 <style>
   h1, h2 {
@@ -25,4 +26,16 @@
     font-family: 'Rajdhani', sans-serif;
     color: #aa1e1e;
   }
+
+  #chart4 {
+  background-color: slategrey;
+  border-radius: 10px;
+  padding-top: 10px;
+ }
+ .ct-series-a .ct-line {
+  stroke: black;
+  stroke-width: 4px;
+}
+
 </style>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
