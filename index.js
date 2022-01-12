@@ -41,10 +41,10 @@ new Chartist.Line(
 );
 
 var base = 350;
-var deviation = 50;
 var width = 20;
 
-function draw(i, oldbase, color, value) {
+function draw(i, oldbase, color, value, letter) {
+  var deviation = 50;
   var newBase = base + deviation * Math.random();
   var height = value * base + deviation * Math.random();
 
@@ -56,11 +56,17 @@ function draw(i, oldbase, color, value) {
   var end_pnt_Y = newBase;
 
   context.beginPath();
-  context.lineWidth = 3;
-  context.strokeText('', cntrl_pnt_X, cntrl_pnt_Y);
+  context.lineWidth = 1;
+  if (value) {
+    letter = '';
+    deviation = 0;
+    cntrl_pnt_Y = height - deviation + deviation * Math.random();
+  }
+  context.strokeText(letter, cntrl_pnt_X, 150);
   context.moveTo(start_pnt_X, start_pnt_Y);
   context.quadraticCurveTo(cntrl_pnt_X, cntrl_pnt_Y, end_pnt_X, end_pnt_Y);
   context.strokeStyle = color;
+  context.lineWidth = 2;
   context.stroke();
   return newBase;
 }
@@ -79,8 +85,10 @@ var oldbaseG = base;
 var oldbaseT = base;
 
 for (let i = 0; i < code.length; i++) {
-  oldbaseT = draw(i, oldbaseT, '#000000', t[i]);
-  oldbaseC = draw(i, oldbaseC, '#008800', c[i]);
-  oldbaseG = draw(i, oldbaseG, '#000088', g[i]);
-  oldbaseA = draw(i, oldbaseA, '#FF0000', a[i]);
+  oldbaseT = draw(i, oldbaseT, '#000000', t[i], 'T');
+  oldbaseC = draw(i, oldbaseC, '#008800', c[i], 'C');
+  oldbaseG = draw(i, oldbaseG, '#000088', g[i], 'G');
+  oldbaseA = draw(i, oldbaseA, '#FF0000', a[i], 'A');
 }
+context.font = '86px serif';
+context.strokeText('PRINC 355', 10, 350);
